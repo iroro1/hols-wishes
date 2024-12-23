@@ -101,7 +101,7 @@ export default function Home() {
         </h6>
         <div className="mt-[20%] overflow-y-hidden flex-col flex justify-center items-center">
           <h1 className="text-4xl font-extrabold mb-6">
-            🎉 Create Your Holiday Wish 🥳
+            🎉 Create and Share Your Holiday Wish 🥳
           </h1>
 
           <p>
@@ -138,13 +138,12 @@ export default function Home() {
               <p className="mt-5">
                 Your wish has been created! Share this link:
               </p>
-              <a
+              <Link
                 href={link}
                 className="text-blue-500 underline break-words hover:text-blue-700"
-                target="_blank"
               >
                 {link}
-              </a>
+              </Link>
             </motion.div>
           )}
           {lastWishes.length > 0 && (
