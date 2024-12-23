@@ -9,6 +9,7 @@ export default function WishPage() {
   const [wishData, setWishData] = useState<{
     name: string;
     message: string;
+    title: string;
   } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -52,6 +53,7 @@ export default function WishPage() {
     <ClientWishPage
       name={wishData?.name.toString() || ""}
       message={wishData?.message?.toString() || ""}
+      title={wishData?.title?.toString() || ""}
     />
   );
 }

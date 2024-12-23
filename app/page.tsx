@@ -10,6 +10,7 @@ import {
   HomeIcon,
   X,
   Clipboard,
+  Heading,
 } from "lucide-react";
 import { toast } from "react-toastify";
 import Link from "next/link";
@@ -19,6 +20,7 @@ export default function Home() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [title, setTitle] = useState("");
   const [link, setLink] = useState("");
   const [wishCount, setWishCount] = useState(0);
   const [holidayImage, setHolidayImage] = useState("");
@@ -68,7 +70,7 @@ export default function Home() {
     const response = await fetch("/api/create-wish", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email, message, uniqueLink }),
+      body: JSON.stringify({ name, email, message, uniqueLink, title }),
     });
 
     const data = await response.json();
@@ -129,12 +131,13 @@ export default function Home() {
               <p className="mt-5">
                 Your wish has been created! Share this link:
               </p>
-              <a
+              <Link
                 href={link}
                 className="text-blue-500 underline break-words hover:text-blue-700"
+                target="_blank"
               >
                 {link}
-              </a>
+              </Link>
             </motion.div>
           )}
         </div>
@@ -181,6 +184,17 @@ export default function Home() {
                   placeholder="Your Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="flex-grow outline-none"
+                />
+              </div>
+              <div className="flex items-center border rounded-lg p-2">
+                <Heading className="mr-2 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Your Title"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
                   required
                   className="flex-grow outline-none"
                 />
