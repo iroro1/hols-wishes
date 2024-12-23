@@ -185,7 +185,7 @@ export default function Home() {
                     )}
                   </div>
                 </motion.div>
-                <div className=" bg-[#fff] min-w-[full] max-w-[360px] p-2 text-center text-green-900 mt-6 rounded-lg">
+                <div className=" bg-[#fff] text-sm min-w-[full] max-w-[360px] p-2 text-center text-green-900 mt-6 rounded-lg">
                   Created by{" "}
                   <Link
                     className="text-green-500"
