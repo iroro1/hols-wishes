@@ -265,7 +265,7 @@ export default function Home() {
                 type="submit"
                 className="flex items-center justify-center w-full p-3 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600"
               >
-                <Gift className="mr-2" /> Create Wish
+                <Gift className="mr-2" /> Create greeting
               </motion.button>
             </form>
           </motion.div>

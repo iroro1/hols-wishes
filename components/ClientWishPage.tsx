@@ -52,7 +52,7 @@ export default function ClientWishPage({
           className="flex items-center mx-auto justify-center mt-6 p-2 bg-green-600 text-white rounded-lg shadow-xl hover:bg-green-700 transition duration-300 ease-in-out transform"
         >
           <Home className="mr-3 h-4 w-4" />
-          <span className="text-sm">Create Your Own Wish</span>
+          <span className="text-sm">Create Your Own greeting</span>
         </motion.button>
       </motion.div>
     </div>
