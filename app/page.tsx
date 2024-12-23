@@ -89,7 +89,8 @@ export default function Home() {
     setLastWishes(data?.data);
   };
 
-  const urlLink = "/wish/" + link.split("/").reverse()[0]; // Only use the uniqueLink part for URL creation.
+  const urlLink =
+    "https://hols.netlify.app/wish/" + link.split("/").reverse()[0]; // Only use the uniqueLink part for URL creation.
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-400 via-red-300 to-blue-400  flex flex-col items-center">
