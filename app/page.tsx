@@ -88,6 +88,9 @@ export default function Home() {
     console.log(data);
     setLastWishes(data?.data);
   };
+
+  const urlLink = "/wish/" + link.split("/").reverse()[0]; // Only use the uniqueLink part for URL creation.
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-400 via-red-300 to-blue-400  flex flex-col items-center">
       <motion.div
@@ -139,7 +142,7 @@ export default function Home() {
                 Your wish has been created! Share this link:
               </p>
               <Link
-                href={link}
+                href={urlLink}
                 className="text-blue-500 underline break-words hover:text-blue-700"
               >
                 {link}
