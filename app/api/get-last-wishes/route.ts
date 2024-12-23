@@ -9,6 +9,6 @@ export async function GET() {
   }
 
   return NextResponse.json({
-    data: data.slice(0, 3),
+    data: data.reverse().slice(0, 3),
   });
 }
