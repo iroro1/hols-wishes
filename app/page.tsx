@@ -109,18 +109,27 @@ export default function Home() {
           </h1>
 
           <p>
-            Join our community of people who have shared their wish with us.
+            Join our community of people who have shared their holiday
+            greetings.
           </p>
           {wishCount > 0 && (
-            <p className="text-lg">{wishCount} wishes shared so far</p>
+            <p className="text-lg">{wishCount} greetings shared so far</p>
           )}
+          <ul className="mt-6 list-disc list-inside text-left bg-white text-[#555] p-2 rounded relative">
+            <h4 className="underline font-bold">How to Use</h4>
+            <li>Click Create your own greeting</li>
+            <li>Fill in the fields</li>
+            <li>Once created successfully, copy the link generated</li>
+            <li>Share the link with the recipients of the greetings</li>
+          </ul>
+
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setShowForm(true)}
             className="flex items-center justify-center mx-auto mt-6 p-3 bg-green-500 text-white rounded-lg shadow-lg hover:bg-green-600 transition duration-300 ease-in-out transform"
           >
-            <HomeIcon className="mr-2" /> Create Your Own Wish
+            <HomeIcon className="mr-2" /> Create Your Own Greeting
           </motion.button>
 
           {link && (
@@ -157,7 +166,7 @@ export default function Home() {
               transition={{ delay: 0.2, duration: 0.5 }}
               className="mt-6 text-left bg-white text-[#555] p-2 rounded relative"
             >
-              <p className="my-5">Recent wishes shared by our users:</p>
+              <p className="mb-5">Recent wishes shared by our users:</p>
               <div className="text-sm">
                 {lastWishes.map(
                   (

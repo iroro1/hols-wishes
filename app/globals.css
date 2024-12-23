@@ -19,3 +19,9 @@ button:hover {
 div {
   margin: 20px;
 } */
+@layer base {
+  ul,
+  ol {
+    list-style: revert;
+  }
+}
