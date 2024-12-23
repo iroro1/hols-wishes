@@ -1,35 +1,57 @@
+"use client";
 // app/wish/[uniqueLink]/page.tsx
 import ClientWishPage from "@/components/ClientWishPage";
-import { supabase } from "@/lib/supabase";
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation"; // Import useParams from next/navigation
 
-// This is an async function that generates the static parameters for the dynamic route.
-export async function generateStaticParams() {
-  const { data } = await supabase.from("hols_wishes").select("unique_link");
-  // Map the data to return a list of paths for static generation.
-  return (
-    data?.map((wish) => ({
-      uniqueLink: wish.unique_link,
-    })) || []
-  );
-}
+export default function WishPage() {
+  const { uniqueLink } = useParams(); // Use useParams to get dynamic route params
+  const [wishData, setWishData] = useState<{
+    name: string;
+    message: string;
+  } | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
-// This is the main page component that receives the params object.
-export default async function WishPage({
-  params,
-}: {
-  params: { uniqueLink: string }; // The params object should be passed correctly.
-}) {
-  const { data, error } = await supabase
-    .from("hols_wishes")
-    .select("*")
-    .eq("unique_link", params.uniqueLink)
-    .single();
+  useEffect(() => {
+    if (uniqueLink) {
+      fetchWishData(uniqueLink.toString());
+    }
+  }, [uniqueLink]);
 
-  // Handle case where no wish was found for the given uniqueLink.
-  if (error || !data) {
-    return <div className="text-center p-4">Wish not found! or expired</div>;
+  const fetchWishData = async (link: string) => {
+    try {
+      const response = await fetch(`/api/get-wish?uniqueLink=${link}`);
+      const data = await response.json();
+      console.log(data, "******");
+
+      if (response.ok) {
+        setWishData(data);
+      } else {
+        setError(data.error || "An unknown error occurred");
+      }
+    } catch (err) {
+      setError("An error occurred while fetching the data.");
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Handle loading, error, and success states
+  if (loading) {
+    return <div className="text-center p-4">Loading...</div>;
   }
 
-  // Pass the fetched data to the client component.
-  return <ClientWishPage name={data.name} message={data.message} />;
+  if (error) {
+    return <div className="text-center p-4 text-red-500">{error}</div>;
+  }
+
+  // Render the page with the fetched data
+  return (
+    <ClientWishPage
+      name={wishData?.name.toString() || ""}
+      message={wishData?.message?.toString() || ""}
+    />
+  );
 }

@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 import { motion } from "framer-motion";
@@ -14,6 +13,7 @@ import {
 } from "lucide-react";
 import { toast } from "react-toastify";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   const [name, setName] = useState("");
@@ -154,10 +154,13 @@ export default function Home() {
             >
               <X />
             </button>
-            <img
+            <Image
               src={holidayImage}
               alt="Holiday Theme"
               className="rounded-md mb-4 mt-4 w-full h-40 object-cover"
+              width={0}
+              height={0}
+              sizes="100vw"
             />
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="flex items-center border rounded-lg p-2">
