@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Add this to your CSS */
+/* button {
+  margin: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+} */
+/* 
+button:hover {
+  background-color: #ddd;
+} */
+/* 
+div {
+  margin: 20px;
+} */

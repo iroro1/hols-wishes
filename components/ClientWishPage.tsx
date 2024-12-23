@@ -40,7 +40,7 @@ export default function ClientWishPage({
         </h1>
 
         {/* Message Section */}
-        <p className="text-lg md:text-xl max-w-2xl mx-auto mb-6 text-opacity-90 ">
+        <p className="text-lg md:text-lg  max-w-2xl mx-auto mb-6 text-opacity-90 ">
           {message}
         </p>
 

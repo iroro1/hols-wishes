@@ -15,6 +15,7 @@ import {
 import { toast } from "react-toastify";
 import Link from "next/link";
 import Image from "next/image";
+import MessageEditor from "@/components/MessageEditor";
 
 export default function Home() {
   const [name, setName] = useState("");
@@ -25,6 +26,7 @@ export default function Home() {
   const [wishCount, setWishCount] = useState(0);
   const [holidayImage, setHolidayImage] = useState("");
   const [showForm, setShowForm] = useState(false);
+  const [lastWishes, setLastWishes] = useState([]);
 
   useEffect(() => {
     // Fetch the count of wishes sent
@@ -35,6 +37,7 @@ export default function Home() {
     };
 
     fetchWishCount();
+    loadLastWishes();
 
     // Determine holiday image based on current date
     const today = new Date();
@@ -80,7 +83,12 @@ export default function Home() {
       toast.success("Message created successfully");
     }
   };
-
+  const loadLastWishes = async () => {
+    const response = await fetch("/api/get-last-wishes");
+    const data = await response.json();
+    console.log(data);
+    setLastWishes(data?.data);
+  };
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-400 via-red-300 to-blue-400  flex flex-col items-center">
       <motion.div
@@ -138,6 +146,23 @@ export default function Home() {
               >
                 {link}
               </Link>
+            </motion.div>
+          )}
+          {lastWishes.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+              className="mt-6 text-left bg-white text-[#555] p-2 rounded relative"
+            >
+              <p className="my-5">Recent wishes shared by our users:</p>
+              <div className="text-sm">
+                {lastWishes.map((wish: any, i) => (
+                  <div key={wish.id} className=" hover:text-blue-700">
+                    {i + 1}. {wish.message.slice(0, 50) + "..."}
+                  </div>
+                ))}
+              </div>
             </motion.div>
           )}
         </div>
@@ -206,8 +231,14 @@ export default function Home() {
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   required
+                  maxLength={500}
                   className="flex-grow outline-none"
                 />
+
+                {/* <MessageEditor onMessageChange={(e) => setMessage(e)} /> */}
+              </div>
+              <div className="flex justify-between items-center text-sm mt-[-25px]">
+                <span>{message.length} / 500</span>
               </div>
               <motion.button
                 whileHover={{ scale: 1.05 }}
