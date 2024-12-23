@@ -4,7 +4,7 @@ import { supabase } from "@/lib/supabase";
 export async function POST(request: Request) {
   const { name, email, message, uniqueLink, title } = await request.json();
 
-  const { data, error } = await supabase
+  const { error } = await supabase
     .from("hols_wishes")
     .insert({ name, email, message, unique_link: uniqueLink, title });
 

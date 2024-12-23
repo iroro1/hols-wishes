@@ -1,21 +1,20 @@
 "use client";
-import { useEffect, useState } from "react";
-import { nanoid } from "nanoid";
 import { motion } from "framer-motion";
 import {
-  User,
+  Clipboard,
+  Gift,
+  Heading,
+  HomeIcon,
   Mail,
   MessageSquare,
-  Gift,
-  HomeIcon,
+  User,
   X,
-  Clipboard,
-  Heading,
 } from "lucide-react";
-import { toast } from "react-toastify";
-import Link from "next/link";
+import { nanoid } from "nanoid";
 import Image from "next/image";
-import MessageEditor from "@/components/MessageEditor";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 export default function Home() {
   const [name, setName] = useState("");
@@ -157,11 +156,19 @@ export default function Home() {
             >
               <p className="my-5">Recent wishes shared by our users:</p>
               <div className="text-sm">
-                {lastWishes.map((wish: any, i) => (
-                  <div key={wish.id} className=" hover:text-blue-700">
-                    {i + 1}. {wish.message.slice(0, 50) + "..."}
-                  </div>
-                ))}
+                {lastWishes.map(
+                  (
+                    wish: {
+                      id: string;
+                      message: string;
+                    },
+                    i
+                  ) => (
+                    <div key={wish.id} className=" hover:text-blue-700">
+                      {i + 1}. {wish.message.slice(0, 50) + "..."}
+                    </div>
+                  )
+                )}
               </div>
             </motion.div>
           )}
