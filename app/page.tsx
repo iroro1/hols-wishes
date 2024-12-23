@@ -105,7 +105,7 @@ export default function Home() {
         </h6>
         <div className="mt-[20%] overflow-y-hidden flex-col flex justify-center items-center">
           <h1 className="text-4xl font-extrabold mb-6">
-            🎉 Create and Share Your Holiday Wish 🥳
+            🎉 Create and Share Your Holiday greetings 🥳
           </h1>
 
           <p>
