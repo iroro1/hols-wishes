@@ -138,13 +138,13 @@ export default function Home() {
               <p className="mt-5">
                 Your wish has been created! Share this link:
               </p>
-              <Link
+              <a
                 href={link}
                 className="text-blue-500 underline break-words hover:text-blue-700"
                 target="_blank"
               >
                 {link}
-              </Link>
+              </a>
             </motion.div>
           )}
           {lastWishes.length > 0 && (
