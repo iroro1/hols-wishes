@@ -35,23 +35,35 @@ const View = () => {
           <h1 className="text-xl md:text-2xl font-extrabold mb-4 text-shadow-lg">
             All wishes <span>({lastWishes.length})</span>
           </h1>
-          {lastWishes.map((wish: any, index: number) => (
-            <div
-              key={index}
-              className="bg-white text-black p-4 rounded-lg shadow-md mb-4"
-            >
-              <h2 className="text-lg font-semibold text-gray-900 mb-2">
-                {wish.title}
-              </h2>
-              <div className="text-sm text-gray-500 mb-2 flex items-center gap-2 flex-wrap">
-                <span>{wish?.email}</span> <span>|</span>
-                <span>{wish?.name}</span> <span>|</span>
-                <span>{wish?.unique_link}</span> <span>|</span>
-                <span>{formatDateTime(wish?.created_at)}</span>
+          {lastWishes.map(
+            (
+              wish: {
+                title: string;
+                message: string;
+                email: string;
+                name: string;
+                unique_link: string;
+                created_at: string;
+              },
+              index: number
+            ) => (
+              <div
+                key={index}
+                className="bg-white text-black p-4 rounded-lg shadow-md mb-4"
+              >
+                <h2 className="text-lg font-semibold text-gray-900 mb-2">
+                  {wish.title}
+                </h2>
+                <div className="text-sm text-gray-500 mb-2 flex items-center gap-2 flex-wrap">
+                  <span>{wish?.email}</span> <span>|</span>
+                  <span>{wish?.name}</span> <span>|</span>
+                  <span>{wish?.unique_link}</span> <span>|</span>
+                  <span>{formatDateTime(wish?.created_at)}</span>
+                </div>
+                <p className="text-gray-600">{wish.message}</p>
               </div>
-              <p className="text-gray-600">{wish.message}</p>
-            </div>
-          ))}
+            )
+          )}
         </div>
       </div>
     </div>
