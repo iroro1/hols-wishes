@@ -85,7 +85,6 @@ export default function Home() {
   const loadLastWishes = async () => {
     const response = await fetch("/api/get-last-wishes");
     const data = await response.json();
-    console.log(data);
     setLastWishes(data?.data);
   };
 
