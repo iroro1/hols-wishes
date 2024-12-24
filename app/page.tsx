@@ -141,7 +141,7 @@ export default function Home() {
               >
                 <button
                   onClick={() => {
-                    navigator.clipboard.writeText(link);
+                    navigator.clipboard.writeText(urlLink);
                     toast.success("Message copied to clipboard!");
                   }}
                   className="absolute top-2 right-2 text-gray-400 hover:text-gray-600"
